@@ -112,7 +112,7 @@ func requestStream() rsocket.OptAbstractSocket {
 }
 
 func requestChannel() rsocket.OptAbstractSocket {
-	return rsocket.RequestChannel(func(msgs rx.Publisher) flux.Flux {
+	return rsocket.RequestChannel(func(msgs flux.Flux) flux.Flux {
 		return msgs.(flux.Flux).
 			SwitchOnFirst(func(sig flux.Signal, f flux.Flux) flux.Flux {
 				if msg, ok := sig.Value(); ok {
